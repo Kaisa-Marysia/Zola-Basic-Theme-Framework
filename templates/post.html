@@ -1,0 +1,21 @@
+{% import "macro_image.html" as image %}
+
+{% macro render(page, type="default") %}
+  <div class="BlogPost">
+    <li>
+      <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+    </li>
+      {% if page.extra.image %}
+        {% set image = resize_image(path=page.extra.image, height=160, op="fit_height") %}
+        {% if page.extra.imageAlt %}
+          {% set imageAltText = page.extra.imageAlt %}
+        {% else %}
+          {% set imageAltText = "Default alt text if not set." %}
+        {% endif %}
+        <img src="{{ image.url }}"/>
+      {% else %}
+        {% set image = resize_image(path="/img/default.jpg", height=160, op="fit_height") %}
+        <img src="{{ image.url }}" alt="foobar" />
+      {% endif %}
+  </div>
+{% endmacro %}

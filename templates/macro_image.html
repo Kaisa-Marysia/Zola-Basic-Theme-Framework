@@ -1,0 +1,8 @@
+{% macro render(src, alt, extra="") %}
+  <img
+    src="{{src}}"
+    class="macroimage {{extra}}"
+    alt="{{alt}}"
+    style="width: 100%"
+  />
+{% endmacro %}

@@ -1,0 +1,35 @@
+base_url = "https://domain.tld"
+title = "Blog Title"
+description = "Description of your Blog"
+compile_sass = true
+
+build_search_index = true
+
+taxonomies = [
+  {name = "categories", paginate_by = 5},
+  {name = "tags", paginate_by = 5},
+]
+
+[markdown]
+highlight_code = true
+
+[extra]
+[[extra.menu]]
+name = "Menu 0"
+links = []
+
+[[extra.menu]]
+name = "Menu 1"
+links = [
+  {title = 'Submenu01', url = '/categories/fotos'},
+  {title = 'Submenu02', url = '/categories/blog'},
+]
+
+[[extra.menu]]
+name = "Menu 2"
+links = [
+  {title = 'Submenu01', url = '/categories/fotos'},
+  {title = 'Submenu02', url = '/categories/blog'},
+  {title = 'Submenu03', url = '/categories/foo'},
+  {title = 'Submenu04', url = '/categories/bar'},
+]

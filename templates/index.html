@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% import "paginator.html" as paginator %}
+
+{% block content %}
+
+<ul>
+      {% for page in paginator.pages %}
+    <div class="BlogPost">
+    <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+      {% if page.extra.image %}
+        {% set image = resize_image(path=page.extra.image, height=160, op="fit_height", format="webp"
+        ) %}
+      {% if page.extra.imageAlt %}
+        {% set imageAltText = page.extra.imageAlt %}
+      {% else %}
+        {% set imageAltText = "Default alt text if not set." %}
+      {% endif %}
+        <img src="{{ image.url }}"/>
+      {% else %}
+        {% set image = resize_image(path="img/default.jpg", height=160, op="fit_height", format="webp") %}
+        <img src="{{ image.url }}" alt="foobar" /> 
+      {% endif %}
+        </div>
+  {% endfor %}
+
+
+<nav class="pagination">
+    {% if paginator.previous %}
+        <a class="previous" href="{{ paginator.previous }}">‹ Previous</a>
+    {% endif %}
+    {% if paginator.next %}
+        <a class="next" href="{{ paginator.next }}">Next ›</a>
+    {% endif %}
+</nav>
+{% endblock content %}

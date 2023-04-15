@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "post.html" as post %}
+{% import "paginator.html" as paginator %}
+
+{% block title %}
+	{{config.title}} - {{taxonomy.name}}: {{term.name}}
+{% endblock %}
+
+{% block content %}
+	{% for page in paginator.pages %}
+    {{post::render(page=page)}}
+	{% endfor %}
+  {{paginator::render(paginator=paginator)}}
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+    {% for menu in config.extra.menu %}
+      <ul id="menu">
+      {% if menu.name == "menu-name" %}
+        <li>
+          <a>{{ menu.name }}</a>
+        <li>
+      {% else %}
+        <li>
+          <a href="{{config.base_url}}/categories/{{ menu.name | lower }}" id="navcat">{{ menu.name }}</a>
+        </li>
+      {% endif %}
+        <ul class="navbar">
+        {% for link in menu.links %}
+          <li class="navitem">
+            <a class="navlink" href="{% if not link.url is containing("://") %}{{config.base_url}}{% endif %}{{link.url}}" >{{link.title}} </a>
+          </li>
+        {% endfor %}
+        </ul>
+      </ul>
+    {% endfor %}
+    {% block content %}
+    {% endblock %}
+    </div>
+  </section>
+</body>
+
+</html>
